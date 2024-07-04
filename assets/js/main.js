@@ -1,11 +1,13 @@
+// Variablen initialisieren und deklarieren
 let xp = 0;
 let health = 100;
 let gold = 50;
 let currentWeapon = 0;
 let fighting;
 let monsterHealth;
-let inventory = ["stick"];
+let inventory = ["Stock"];
 
+// Buttons und Textelemente aus dem DOM auswählen
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -16,11 +18,13 @@ const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+
+// Waffen und Monster-Daten
 const weapons = [
-  { name: "stick", power: 5 },
-  { name: "dagger", power: 30 },
-  { name: "claw hammer", power: 50 },
-  { name: "sword", power: 100 },
+  { name: "Stock", power: 5 },
+  { name: "Dolch", power: 30 },
+  { name: "Morgenstern", power: 50 },
+  { name: "Schwert", power: 100 },
 ];
 const monsters = [
   {
@@ -39,15 +43,17 @@ const monsters = [
     health: 300,
   },
 ];
+
+// Orte, Texte und Buttons
 const locations = [
   {
-    name: "town square",
-    "button text": ["Geh zum Shop", "Geh zur Höhle", "Kampf gegen Drachen"],
+    name: "Stadtplatz",
+    "button text": ["Geh zum Shop", "Geh zur Höhle", "Bekämpfe den Drachen"],
     "button functions": [goStore, goCave, fightDragon],
     text: 'Sie befinden sich auf dem Stadtplatz. Sie sehen ein Schild mit der Aufschrift "Shop“.',
   },
   {
-    name: "store",
+    name: "Shop",
     "button text": [
       "Kaufe 10 Gesundheit (10 Gold)",
       "Waffe kaufen (30 Gold)",
@@ -57,25 +63,29 @@ const locations = [
     text: "Du betretest den Laden.",
   },
   {
-    name: "cave",
-    "button text": ["Der Troll", "Der Kraken", "Geh zum Stadtplatz"],
+    name: "Höhle",
+    "button text": [
+      "Der dumme Troll",
+      "Die fette Spinne",
+      "Geh zum Stadtplatz",
+    ],
     "button functions": [fightSlime, fightBeast, goTown],
     text: "Du betretest die Höhle. Du siehst einige Monster.",
   },
   {
-    name: "fight",
+    name: "Kampf",
     "button text": ["Attacke", "Ausweichen", "Rennen"],
     "button functions": [attack, dodge, goTown],
     text: "Du kämpfst gegen ein Monstrum.",
   },
   {
-    name: "lose",
+    name: "verlieren",
     "button text": ["Neustart?", "Neustart?", "Neustart?"],
     "button functions": [restart, restart, restart],
     text: "Du bist tot. &#x2620;",
   },
   {
-    name: "win",
+    name: "gewinnen",
     "button text": ["Neustart?", "Neustart?", "Neustart?"],
     "button functions": [restart, restart, restart],
     text: "Der Drache ist besiegt! Du hast gewonnen! &#x1F389;",
@@ -92,11 +102,12 @@ const locations = [
   },
 ];
 
-// initialize buttons
+// Initialisiere Buttons
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
+// Funktion zum Aktualisieren der Ansicht basierend auf der aktuellen Location
 function update(location) {
   monsterStats.style.display = "none";
   button1.innerText = location["button text"][0];
@@ -108,6 +119,7 @@ function update(location) {
   text.innerHTML = location.text;
 }
 
+// Funktionen zum Wechseln der Locations
 function goTown() {
   update(locations[0]);
 }
@@ -120,6 +132,7 @@ function goCave() {
   update(locations[2]);
 }
 
+// Funktion zum Kauf von Gesundheit
 function buyHealth() {
   if (gold >= 10) {
     gold -= 10;
@@ -131,6 +144,7 @@ function buyHealth() {
   }
 }
 
+// Funktion zum Kauf von Waffen
 function buyWeapon() {
   if (currentWeapon < weapons.length - 1) {
     if (gold >= 30) {
@@ -138,7 +152,7 @@ function buyWeapon() {
       currentWeapon++;
       goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
-      text.innerText = "Du hast jetzt eine " + newWeapon + ".";
+      text.innerText = "Du hast jetzt ein " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " In deinem Inventar hast Du: " + inventory;
     } else {
@@ -151,6 +165,7 @@ function buyWeapon() {
   }
 }
 
+// Funktion zum Verkauf von Waffen
 function sellWeapon() {
   if (inventory.length > 1) {
     gold += 15;
@@ -163,6 +178,7 @@ function sellWeapon() {
   }
 }
 
+// Funktionen zum Starten von Kämpfen
 function fightSlime() {
   fighting = 0;
   goFight();
@@ -178,6 +194,7 @@ function fightDragon() {
   goFight();
 }
 
+// Funktion, um den Kampf zu starten und Monster-Stats anzuzeigen
 function goFight() {
   update(locations[3]);
   monsterHealth = monsters[fighting].health;
@@ -186,6 +203,7 @@ function goFight() {
   monsterHealthText.innerText = monsterHealth;
 }
 
+// Funktion zum Angriff
 function attack() {
   text.innerText = "Der " + monsters[fighting].name + " attackiert dich.";
   text.innerText +=
@@ -214,21 +232,25 @@ function attack() {
   }
 }
 
+// Funktion, um den Angriffswert eines Monsters zu erhalten
 function getMonsterAttackValue(level) {
   const hit = level * 5 - Math.floor(Math.random() * xp);
   console.log(hit);
   return hit > 0 ? hit : 0;
 }
 
+// Funktion zur Überprüfung, ob das Monster getroffen wird
 function isMonsterHit() {
   return Math.random() > 0.2 || health < 20;
 }
 
+// Funktion zum Ausweichen
 function dodge() {
   text.innerText =
     "Du weichst den Angriff des " + monsters[fighting].name + " aus";
 }
 
+// Funktion zum Besiegen eines Monsters
 function defeatMonster() {
   gold += Math.floor(monsters[fighting].level * 6.7);
   xp += monsters[fighting].level;
@@ -237,6 +259,7 @@ function defeatMonster() {
   update(locations[4]);
 }
 
+// Funktionen für Spielende
 function lose() {
   update(locations[5]);
 }
@@ -245,6 +268,7 @@ function winGame() {
   update(locations[6]);
 }
 
+// Funktion zum Neustart des Spiels
 function restart() {
   xp = 0;
   health = 100;
@@ -257,28 +281,40 @@ function restart() {
   goTown();
 }
 
+// Funktion für ein Easter Egg
 function easterEgg() {
   update(locations[7]);
 }
 
+// Funktionen für das Zufallsspiel
 function pickTwo() {
   pick(2);
 }
 
+// Funktion pickEight ruft die Funktion pick mit der Zahl 8 als Argument auf
 function pickEight() {
   pick(8);
 }
 
+// Funktion pick, die ein Zufallsspiel durchführt
 function pick(guess) {
   const numbers = [];
+
+  // Schleife, um 10 Zufallszahlen zwischen 0 und 10 (einschließlich) zu generieren
   while (numbers.length < 10) {
     numbers.push(Math.floor(Math.random() * 11));
   }
+
+  // Text-Element aktualisieren, um die gewählte Zahl und die Zufallszahlen anzuzeigen
   text.innerText =
     "Du hast " + guess + " ausgewählt" + ". Hier sind die Zufallszahlen:\n";
+
+  // Schleife, um jede der 10 Zufallszahlen anzuzeigen
   for (let i = 0; i < 10; i++) {
     text.innerText += numbers[i] + "\n";
   }
+
+  // Überprüfen, ob die gewählte Zahl in den Zufallszahlen enthalten ist
   if (numbers.includes(guess)) {
     text.innerText += "Richtig! Du gewinnst 20 Gold!";
     gold += 20;
