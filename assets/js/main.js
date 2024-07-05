@@ -60,15 +60,11 @@ const locations = [
       "Geh zum Stadtplatz",
     ],
     "button functions": [buyHealth, buyWeapon, goTown],
-    text: "Du betretest den Laden.",
+    text: "Du betrittst den Laden.",
   },
   {
     name: "Höhle",
-    "button text": [
-      "Der dumme Troll",
-      "Die fette Spinne",
-      "Geh zum Stadtplatz",
-    ],
+    "button text": ["Der Troll", "Die Spinne", "Geh zum Stadtplatz"],
     "button functions": [fightSlime, fightBeast, goTown],
     text: "Du betretest die Höhle. Du siehst einige Monster.",
   },
@@ -91,7 +87,7 @@ const locations = [
     text: "Der Drache ist besiegt! Du hast gewonnen! &#x1F389;",
   },
   {
-    name: "kill monster",
+    name: "Töte Monster",
     "button text": [
       "Geh zum Stadtplatz",
       "Geh zum Stadtplatz",
@@ -109,7 +105,7 @@ button3.onclick = fightDragon;
 
 // Funktion zum Aktualisieren der Ansicht basierend auf der aktuellen Location
 function update(location) {
-  monsterStats.style.display = "none";
+  monsterStats.style.display = "";
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -274,7 +270,7 @@ function restart() {
   health = 100;
   gold = 50;
   currentWeapon = 0;
-  inventory = ["stick"];
+  inventory = ["Stock"];
   goldText.innerText = gold;
   healthText.innerText = health;
   xpText.innerText = xp;
