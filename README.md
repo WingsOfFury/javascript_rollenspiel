@@ -29,22 +29,22 @@ In diesem Projekt wurde alles so aufgebaut und strukturiert
 das es sehr viele Bereiche schön abgedeckt hat.
 
 1. **Variablen deklarieren und initialisieren**:\
-   Zu Beginn werden grundlegende Variablen wie `xp`, `health`, `gold`, `currentWeapon` und das `inventory` initialisiert. Diese Variablen speichern den Zustand des Spiels.
+   - Zu Beginn werden grundlegende Variablen wie `xp`, `health`, `gold`, `currentWeapon` und das `inventory` initialisiert. Diese Variablen speichern den Zustand des Spiels.
 
 2. **Buttons und Textelemente aus dem DOM auswählen**:\
-   Es werden verschiedene DOM-Elemente (wie Buttons und Textfelder) ausgewählt und referenziert, um die Benutzeroberfläche zu manipulieren und den Spielzustand anzuzeigen.
+   - Es werden verschiedene DOM-Elemente (wie Buttons und Textfelder) ausgewählt und referenziert, um die Benutzeroberfläche zu manipulieren und den Spielzustand anzuzeigen.
 
 3. **Locations in Objekten speichern**:\
-   Die verschiedenen Orte im Spiel werden in Objekten gespeichert. Diese Objekte enthalten Informationen wie Namen, Button-Texte, Funktionen und Beschreibungen. Man kann auf die Eigenschaften dieser Objekte mit Punkt-Notation oder Klammer-Notation zugreifen.
+   - Die verschiedenen Orte im Spiel werden in Objekten gespeichert. Diese Objekte enthalten Informationen wie Namen, Button-Texte, Funktionen und Beschreibungen. Man kann auf die Eigenschaften dieser Objekte mit Punkt-Notation oder Klammer-Notation zugreifen.
 
 4. **Funktionen mit und ohne Parameter**:\
-   Es gibt Funktionen, die entweder Parameter annehmen oder keine Parameter haben. Diese Funktionen steuern verschiedene Aspekte des Spiels, wie den Wechsel zwischen Locations, das Kaufen von Gegenständen und den Kampf gegen Monster.
+   - Es gibt Funktionen, die entweder Parameter annehmen oder keine Parameter haben. Diese Funktionen steuern verschiedene Aspekte des Spiels, wie den Wechsel zwischen Locations, das Kaufen von Gegenständen und den Kampf gegen Monster.
 
 5. **Schleifen (Loops) wie For und While**: \
-   Der Code verwendet Schleifen, wie `for` und `while`, um wiederholte Aufgaben zu erledigen, wie das Generieren von Zufallszahlen oder das Durchlaufen von Arrays.
+   - Der Code verwendet Schleifen, wie `for` und `while`, um wiederholte Aufgaben zu erledigen, wie das Generieren von Zufallszahlen oder das Durchlaufen von Arrays.
 
 6. **If/Else-Bedingungen**: \
-   If/Else-Bedingungen werden verwendet, um Entscheidungen basierend auf bestimmten Bedingungen zu treffen. Diese logischen Abfragen helfen dabei, verschiedene Spielereignisse zu steuern, wie das Gewinnen von Gold oder das Verlieren von Gesundheit.
+   - If/Else-Bedingungen werden verwendet, um Entscheidungen basierend auf bestimmten Bedingungen zu treffen. Diese logischen Abfragen helfen dabei, verschiedene Spielereignisse zu steuern, wie das Gewinnen von Gold oder das Verlieren von Gesundheit.
 
 7. **DOM-Manipulation und Event-Handling**:
    - Wie man DOM-Elemente auswählt und manipuliert.
